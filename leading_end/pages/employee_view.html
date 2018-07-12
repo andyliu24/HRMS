@@ -39,55 +39,82 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3>
-				员工入职
+				员工信息
 			</h3>
+			<div style="height: 2em;"></div>
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="employee_view.html">员工信息查询</a>
+				</li>
+				<li>
+					 <a href="employee_modify.html">员工信息修改</a>
+				</li>
+				<!--<li class="disabled">
+					 <a href="#">信息</a>
+				</li>
+				<li class="dropdown pull-right">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a href="#">操作</a>
+						</li>
+						<li>
+							 <a href="#">设置栏目</a>
+						</li>
+						<li>
+							 <a href="#">更多设置</a>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							 <a href="#">分割线</a>
+						</li>
+					</ul>
+				</li>-->
+			</ul>
 			<div style="height: 2em;"></div>
 			<form role="form">
 				<div class="form-group">
 					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
 				</div>
-				<div class="form-group">
-					 <label for="department_id">部门编号*</label><input type="number" class="form-control" id="department_id" required="required" />
+			   <button type="submit" class="btn btn-default">查询</button>&nbsp;&nbsp;
+			   <button type="reset" class="btn btn-default">重置</button>
+			</form>
+			<div style="height: 2em;"></div>
+			<form role="form">
+					<div class="form-group">
+					 <label for="department_id">部门编号</label><input type="number" class="form-control" id="department_id" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="position_id">岗位编号*</label><input type="number" class="form-control" id="position_id" required="required" />
+					 <label for="position_id">岗位编号</label><input type="number" class="form-control" id="position_id" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="name">姓名*</label><input type="text" class="form-control" id="name" required="required" />
+					 <label for="name">姓名</label><input type="text" class="form-control" id="name" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="gender">性别*</label><br/>
-					 <input type="radio" name="gender" value="男" checked="checked"/>男
-					 &nbsp;
- 					 <input type="radio" name="gender" value="女"/>女
+					 <label for="gender">性别</label><input type="text" class="form-control" id="gender" readonly="readonly" />
 				</div><p/>
 				<div class="form-group">
-					 <label for="telephone">电话*</label><input type="number" class="form-control" id="telephone" required="required" />
+					 <label for="telephone">电话</label><input type="number" class="form-control" id="telephone" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					 <label for="salary">月薪*</label><input type="number" class="form-control" id="salary" required="required" />
+					 <label for="salary">月薪</label><input type="number" class="form-control" id="salary" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="birthday">出生日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="birthday" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                </div><p/>   
+					<label for="birthday">出生日期</label><input type="date" class="form-control" id="birthday" readonly="readonly"/>
+                </div>
 				<div class="form-group">
-					<label for="trial_start_date">试用起始日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_start_date" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-               </div><p/>
+					<label for="trial_start_date">试用起始日期</label><input type="date" class="form-control" id="trial_start_date" readonly="readonly"/>
+				</div>
 				<div class="form-group">
-					<label for="trial_end_date">试用截止日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_end_date" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-            </div><p/>
-				<div style="height: 1em;"></div>
-			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
-			   <button type="reset" class="btn btn-default">重置</button>
+					<label for="trial_end_date">试用截止日期</label><input type="date" class="form-control" id="trial_end_date" readonly="readonly"/>
+				</div>
+				<div class="form-group">
+					<label for="register_time">转正日期</label><input type="date" class="form-control" id="register_time" readonly="readonly"/>
+				</div>
+				<div class="form-group">
+					<label for="dimission_date">离职日期</label><input type="date" class="form-control" id="dimission_date" readonly="readonly"/>
+				</div>
 			</form>
 		</div>
 	</div>
