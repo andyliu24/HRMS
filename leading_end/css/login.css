@@ -26,14 +26,10 @@
 	width: 45%;
 	margin: 0 auto;
 	min-width: 280px;
-	
 }
 
 .user-login {
-	background-color: gray;
-	filter:alpha(opacity=40); /*ie透明度20%*/ 
-	-moz-opacity:0.6;        /*Moz + FF 透明度20%*/ 
-	opacity:0.6;
+	background:gray;
 	/*background: url(../img/3.jpg) no-repeat;*/
 	border-radius: 0.8em;
 	-o-border-radius: 0.8em;
