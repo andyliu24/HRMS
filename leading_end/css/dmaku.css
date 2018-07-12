@@ -1,0 +1,91 @@
+﻿body{margin:0;padding:0}
+.echarts_pie{
+	height:570px;
+	width:100%;
+}
+#echart{
+	height:538px;
+	width:100%;
+}
+.echarts_pie ul{
+	float:left;
+	list-style:none;
+}
+.echarts_pie ul li{
+	float:left;
+}
+.echarts_pie .government{
+	margin-top:-500px;
+	width:200px;
+	height:60px;
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+}
+.echarts_pie .government_img{
+	margin-top:-920px;
+	margin-left:235px;
+}
+.echarts_pie .bussiness{
+	width:195px;
+	height:60px;
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+	margin-top:140px;
+}
+.echarts_pie .bussiness_img{
+	margin-top:-560px;
+	margin-left:-170px;
+}
+.echarts_pie .industry{
+	width:195px;
+	height:60px;
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+	margin-top:160px;
+}
+.echarts_pie .industry_img{
+	margin-top:-180px;
+	margin-left:-110px;
+}
+.echarts_pie .hospital_img{
+	margin-top:-950px;
+	margin-left:620px;
+}
+.echarts_pie .school_img{
+	margin-top:-680px;
+	margin-left:690px;
+}
+.echarts_pie .hotel_img{
+	margin-top:-300px;
+	margin-left:620px;
+}
+.echarts_pie .hospital{
+	margin-top:-570px;
+	margin-left:800px;
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+}
+.echarts_pie .school{
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+	margin-left:800px;
+	margin-top:110px;
+}
+.echarts_pie .hotel{
+	font-size: 15px;
+	color: #4A4A4A;
+	letter-spacing: 0px;
+	line-height: 20px;
+	margin-left:810px;
+	margin-top:190px;
+}

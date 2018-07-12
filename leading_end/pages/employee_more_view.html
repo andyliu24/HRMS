@@ -39,22 +39,42 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3>
-				员工离职
+				员工详细信息
 			</h3>
+			<div style="height: 2em;"></div>
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href="employee_more_view.html">员工详细信息查询</a>
+				</li>
+				<li>
+					 <a href="employee_more_modify.html">员工详细信息修改</a>
+				</li>
+			</ul>
 			<div style="height: 2em;"></div>
 			<form role="form">
 				<div class="form-group">
 					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
 				</div>
-				<div class="form-group">
-					<label for="dimission_date">离职日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				 	<input class="form-control" size="16" type="text" value="" id="dimission_date" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-              </div><p/>
-				</div>
-			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
+			   <button type="submit" class="btn btn-default">查询</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
+			</form>
+			<div style="height: 2em;"></div>
+			<form role="form">
+					<div class="form-group">
+					 <label for="old_company">曾工作公司</label><input type="text" class="form-control" id="old_company" readonly="readonly" />
+				</div>
+				<div class="form-group">
+					 <label for="seniority">资历</label><input type="text" class="form-control" id="seniority" readonly="readonly" />
+				</div>
+				<div class="form-group">
+					 <label for="master_language	">精通语言</label><input type="text" class="form-control" id="master_language" readonly="readonly" />
+				</div>
+				<div class="form-group">
+					 <label for="political_status">政治面貌</label><input type="text" class="form-control" id="political_status" readonly="readonly" />
+				</div>
+				<div class="form-group">
+					 <label for="whether_married">婚否</label><input type="text" class="form-control" id="whether_married" readonly="readonly"/>
+				</div>
 			</form>
 		</div>
 	</div>
