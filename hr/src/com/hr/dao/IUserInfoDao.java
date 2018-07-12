@@ -13,4 +13,25 @@ public interface IUserInfoDao {
 	 * @return
 	 */
 	public List<UserInfo> findUser(List<Object> params);
+	
+	/**
+	 * 插入用户信息
+	 * @param user
+	 * @return int
+	 */
+	public int insertUser(UserInfo user);
+	
+	/**
+	 * 修改用户信息
+	 * @param user
+	 * @return int
+	 */
+	public int updateUser(UserInfo user);
+	
+	/**
+	 * 删除用户信息
+	 * @param user
+	 * @return int
+	 */
+	public int deleteUser(UserInfo user);
 }

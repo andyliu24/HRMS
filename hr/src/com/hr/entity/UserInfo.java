@@ -2,16 +2,16 @@ package com.hr.entity;
 
 public class UserInfo {
 
-	private Integer id;
+	private String username;
 	private String name;
 	private String password;
 	
 	
-	public Integer getId() {
-		return id;
+	public String getUserName() {
+		return username;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	public String getName() {
 		return name;
@@ -25,9 +25,9 @@ public class UserInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserInfo(Integer id, String name, String password) {
+	public UserInfo(String username, String password, String name) {
 		super();
-		this.id = id;
+		this.username = username;
 		this.name = name;
 		this.password = password;
 	}
