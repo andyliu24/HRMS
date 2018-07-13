@@ -1,126 +1,145 @@
 package com.hrms.util;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Connection;
+import java.sql.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *  用作数据的基础连接、关闭、查询和更新
+ *  @author Andy Liu
+ *  @time 2018-07-09 10:58
+ */
 public class BaseDao {
-	String driver = ResourceBundle.getBundle("jdbc").getString("driver");
-	String url = ResourceBundle.getBundle("jdbc").getString("url");
-	String username = ResourceBundle.getBundle("jdbc").getString("username");
-	String password = ResourceBundle.getBundle("jdbc").getString("password");
-	
-	private Connection conn;
-	private ResultSet rs;
-	private PreparedStatement pstmt;
-	
-	
-	public Connection getConnection() {
-		try {
-			//1.注册数据库驱动
-			Class.forName(driver);
-			//2.通过DriverManager获取数据库连接
-			if(conn==null||conn.isClosed())
-				conn = DriverManager.getConnection(url, username, password);
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("不能注册驱动");
-			System.out.println("详细信息："+e.toString());
-		} catch (SQLException e) {
-			System.out.println("getConnection()连接错误");
-			System.out.println("详细信息："+e.toString());
-		}
-		return conn;
-	}
-	
-	/**
-	 * 通用查询方法
-	 * @param sql
-	 * @param params
-	 * @return rs查询结果集
-	 */
-	
-	public ResultSet executeQuery(String sql,List<Object> params) {
-		//获取链接
-		if(getConnection()==null) {
-			return null;
-		}
-		try {
-			//创建PreparedSatement对象
-			pstmt = conn.prepareStatement(sql);
-			if(params!=null && params.size()>0) {
-				//循环查询参数集合因为不确定集合对象中每个字段的类型，故采用patmt.setObject()方法
-				for(int i=0;i<params.size();i++) {
-					pstmt.setObject(i+1, params.get(i));
-				}
-			}
-			rs = pstmt.executeQuery();
-		} catch (SQLException e) {
-			System.out.println("SQL异常，详细信息："+e.toString());
-		}finally {
-		//	this.closeConnection();
-		}
-		return rs;
-	}
-	
-	
-	public void closeConnection() {
 
-		try {		
-			if(rs!=null) {
-				rs.close();
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL异常，详细信息："+e.toString());
-		}
-		try {
-			if(pstmt!=null){
-				pstmt.close();
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL异常，详细信息："+e.toString());
-		}
-		try {
-			if(conn!=null){
-				conn.close();
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL异常，详细信息："+e.toString());
-		}
-	}
-	
-	/**
-	 * 通用插入 更新方法
-	 * @author 11766
-	 * @param sql
-	 * @param params
-	 * @return 插入删除影响行数result
-	 */
-	 public int executeUpdate(String sql,List<Object> params) {
-		int result = 0;
-		if(getConnection()==null) {
-			return -1;
-		}
-		try {
-			//创建PreparedSatement对象
-			pstmt = conn.prepareStatement(sql);
-			if(params!=null&&params.size()>0) {
-				//循环查询参数集合因为不确定集合对象中每个字段的类型，故采用patmt.setObject()方法
-				for(int i=0;i<params.size();i++) {
-					pstmt.setObject(i+1, params.get(i));
-				}
-			}
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("SQL异常，详细信息："+e.toString());
-		}finally {
-			this.closeConnection();
-		}
-		return result;
-	}
-	
+    //几个私有属性
+    private String driver = ResourceBundle.getBundle("jdbc").getString("driver");
+    private String url = ResourceBundle.getBundle("jdbc").getString("url");
+    private String username = ResourceBundle.getBundle("jdbc").getString("username");
+    private String password = ResourceBundle.getBundle("jdbc").getString("password");
+    private Connection connection;
+    private ResultSet resultSet;
+    private PreparedStatement preparedStatement;
+
+
+    //初始化同数据库的连接
+    public Connection getConnection() {
+        try {
+            //加载数据库驱动
+            Class.forName(driver);
+            if (connection == null || connection.isClosed()) {
+                //使用DriverManager进行数据库连接
+                connection = DriverManager.getConnection(url, username, password);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("数据库类型驱动不能被找到，请联系技术支持。");
+            System.out.println("详细信息：" + e.toString());
+        } catch (SQLException e) {
+            System.out.println("SQL连接出现问题，请检查用户名密码。");
+            System.out.println("详细信息：" + e.toString());
+        }
+        return connection;
+    }
+
+
+    /**
+     * 数据库关闭连接
+     */
+    public void closeConnection() {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查询结果的显示接口
+     *
+     * @param SQL_Statement SQL语句
+     * @param parameters    参数集合
+     * @return ResultSet
+     * @author Andy Liu
+     * @time 2018-07-09 14:30
+     */
+    public ResultSet executeQuery(String SQL_Statement, List<Object> parameters) {
+        //获取连接，如果连接未建立成功则返回空指针
+        if (getConnection() == null) {
+            return null;
+        }
+
+        try {
+            //创建prepareStatement对象
+            preparedStatement = connection.prepareStatement(SQL_Statement);
+            //判定是否有参数，若参数为空或者0则不进行参数处理。
+            //如果没有查询条件，直接运行resultSet=preparedStatement.executeQuery();
+            if (parameters != null && parameters.size() > 0) {
+                //循环查询参数集合，因为不确定集合中的每个字段类型，所以采用.setObject()方法。
+                for (int i = 0; i < parameters.size(); i++) {
+                    preparedStatement.setObject(i + 1, parameters.get(i));
+                }
+            }
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            System.err.println("SQL语句执行过程中出现问题！");
+            System.err.println("详细信息：" + e.toString());
+        } finally {
+            //查询的时候不能关闭，否则会扔异常。
+            //this.closeConnection();
+        }
+        return resultSet;
+    }
+
+
+    /**
+    * 更新结果的显示接口
+    * @author Andy Liu
+    * @time 2018-07-09 14:30
+    * @param SQL_Statement SQL语句
+    * @param parameters 参数集合
+    * @return ResultSet
+    * */
+    public int executeUpdate(String SQL_Statement, List<Object> parameters){
+      int result=0;
+
+      //获取连接，如果连接未建立成功则返回空指针
+      if (getConnection()==null)
+          return -1;
+
+      try {
+          //创建prepareStatement对象
+          preparedStatement=connection.prepareStatement(SQL_Statement);
+          //判定是否有参数，若参数为空或者0则不进行参数处理。
+          //如果没有查询条件，直接运行resultSet=preparedStatement.executeQuery();
+          if (parameters!=null && parameters.size()>0){
+              //循环查询参数集合，因为不确定集合中的每个字段类型，所以采用.setObject()方法。
+              for(int i=0; i<parameters.size(); i++){
+                  preparedStatement.setObject(i+1,parameters.get(i));
+              }
+          }
+          result=preparedStatement.executeUpdate();
+      } catch (SQLException e) {
+          System.err.println("SQL语句执行过程中出现问题！");
+          System.err.println("详细信息："+e.toString());
+      } finally {
+          this.closeConnection();
+      }
+        return result;
+    }
+
 }
