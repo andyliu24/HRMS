@@ -1,5 +1,5 @@
 	function hideShowPwd(){
-				var pwd = document.getElementById("pass");
+				var pwd = document.getElementById("password");
 				var icon = document.getElementById("ico");
 				if(pwd.type == "password"){
 					pwd.type = "text";

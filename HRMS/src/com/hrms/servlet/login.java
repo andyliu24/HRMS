@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class login extends HttpServlet {
             UserInfo result = userInfoDao.findUser(userList);
             try {
                 if (password.equals(result.getPassword())){
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("username",username);
                     response.sendRedirect("index.jsp");
                 } else {
                     PrintWriter out=response.getWriter();
@@ -40,5 +43,19 @@ public class login extends HttpServlet {
                 PrintWriter out=response.getWriter();
                 out.println("username does not exist！");
             }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            if (req.getParameter("method").equals("logout")){
+                HttpSession session = req.getSession(false);
+                session.invalidate();
+            }
+        } catch (Exception e){
+
+        } finally {
+            resp.sendRedirect("login.jsp");
+        }
     }
 }

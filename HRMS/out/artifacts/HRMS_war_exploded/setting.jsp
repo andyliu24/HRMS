@@ -30,16 +30,20 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<%--
-    <style>
-        @media screen and (min-width:990px) {
-            .alert-warning{
-                width: 42%;
-            }
+    <!-- MD5加密 -->
+    <script src="js/md5.min.js"></script>
+    <script>
+        function md5_encode() {
+            var password = document.getElementById("old_password");
+            var password_md5 = document.getElementById("old_password_md5");
+            var password_new = document.getElementById("new_password");
+            var password_new_md5 = document.getElementById("new_password_md5");
+            password_md5.value = md5(password.value);
+            password_new_md5.value = md5(password_new.value);
+            return true;
         }
-    </style>
---%>
-
+    </script>
+    
 </head>
 <body>
 <div class="container">
@@ -77,12 +81,16 @@
                     </div>
                     <div id="panel-element-422222" class="panel-collapse in">
                         <div class="panel-body">
-                            <form role="form" id="change_password" class="form-inline" name="change_password" method="post" action="setting">
+                            <form role="form" id="change_password" class="form-inline" name="change_password" method="post" action="setting" onsubmit="md5_encode()">
                                 <div class="form-group">
-                                    <label for="old_password">原密码*：&nbsp;</label><input type="password" class="form-control" name="old_password"  required="required" />
+                                    <label for="old_password">原密码*：&nbsp;</label>
+                                    <input type="password" class="form-control" id="old_password"  required="required" />
+                                    <input type="hidden" id="old_password_md5" name="old_password"/>
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="form-group">
-                                    <label for="new_password">新密码*：&nbsp;</label><input type="password" class="form-control" name="new_password" required="required" />
+                                    <label for="new_password">新密码*：&nbsp;</label>
+                                    <input type="password" class="form-control" id="new_password" required="required" />
+                                    <input type="hidden" id="new_password_md5" name="new_password"/>
                                 </div>&nbsp;&nbsp;
 
                                 <button type="submit" class="btn btn-default">更改！</button>
@@ -130,9 +138,8 @@
                     document.getElementById("alert_password_wrong").style.display="block";
                 }
             </script>
-
-
-        </div>
+            
+            </div>
     </div>
 </div>
 

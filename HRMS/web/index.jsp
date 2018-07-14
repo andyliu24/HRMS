@@ -50,13 +50,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">HRMS人力资源管理系统</a>
+            <a class="navbar-brand" href="index.jsp">HRMS人力资源管理系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.jsp">首页</a></li>
                 <li><a href="setting.jsp" target="main">设置</a></li>
-                <li><a href="index.jsp?logout">退出</a></li>
+                <li><a href="login?method=logout">退出</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="搜索...">

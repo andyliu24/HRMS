@@ -32,6 +32,18 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="js/hide_and_show_password.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- MD5加密 -->
+    <script src="js/md5.min.js"></script>
+    <script>
+        function md5_encode() {
+            var password = document.getElementById("password");
+            var password_md5 = document.getElementById("password_md5");
+            password_md5.value = md5(password.value);
+            return true;
+        }
+    </script>
+
 </head>
 <body>
 <div class="box">
@@ -42,12 +54,13 @@
         <div class="right_box">
             <div class="user-login">
                 <h1>用户登录</h1>
-                <form class="login" method="post" action="login">
+                <form class="login" method="post" action="login" onsubmit="md5_encode()">
                     <li class="base">
                         <input type="text" name="username" style="color: white;" placeholder="用户名"><i style="color: white;"  class="fa fa-user"></i>
                     </li>
                     <li class="base">
-                        <input id="pass" type="password" name="password" style="color: white;" placeholder="密码"><i id="ico" style="color: white;" class="fa fa-lock" onclick="hideShowPwd()"></i>
+                        <input type="password" id="password" style="color: white;" placeholder="密码"><i id="ico" style="color: white;" class="fa fa-lock" onclick="hideShowPwd()"></i>
+                        <input type="hidden" id="password_md5" name="password"/>
                     </li>
                     <input type="submit" name="submit-login" value="登录">
                 </form>

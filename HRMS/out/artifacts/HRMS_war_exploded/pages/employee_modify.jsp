@@ -67,12 +67,6 @@
 					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" oninput="if(value.length>20)value=value.slice(0,20)"/>
 				</div>
 				<div class="form-group">
-					 <label for="department_id">部门编号</label><input type="number" class="form-control" id="department_id" oninput="if(value.length>20)value=value.slice(0,20)"/>
-				</div>
-				<div class="form-group">
-					 <label for="position_id">岗位编号</label><input type="number" class="form-control" id="position_id" oninput="if(value.length>20)value=value.slice(0,20)"/>
-				</div>
-				<div class="form-group">
 					 <label for="name">姓名</label><input type="text" class="form-control" id="name" maxlength="5"/>
 				</div>
 				<div class="form-group">

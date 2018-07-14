@@ -36,6 +36,18 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- MD5加密 -->
+    <script src="js/md5.min.js"></script>
+    <script>
+        function md5_encode() {
+            var password = document.getElementById("password");
+            var password_md5 = document.getElementById("password_md5");
+            password_md5.value = md5(password.value);
+            return true;
+        }
+    </script>
+
 </head>
 
 <body>
@@ -77,12 +89,14 @@
             </div>
             <div style="height: 1.5em;"></div>
 
-            <form role="form" class="form-inline" method="post" action="first_register">
+            <form role="form" class="form-inline" method="post" action="first_register" onsubmit="return md5_encode()">
                 <div class="form-group">
                     <label for="InputUsername">用户名：</label><input type="text" class="form-control" name="username" />
                 </div>&nbsp;&nbsp;
                 <div class="form-group">
-                    <label for="InputPassword">密码：</label><input type="password" class="form-control" name="password" />
+                    <label for="InputPassword">密码：</label>
+                    <input type="password" class="form-control" id="password" />
+                    <input type="hidden" id="password_md5" name="password"/>
                 </div>&nbsp;&nbsp;
                 <div class="form-group">
                     <label for="InputName">真实姓名：</label><input type="text" class="form-control" name="name" />

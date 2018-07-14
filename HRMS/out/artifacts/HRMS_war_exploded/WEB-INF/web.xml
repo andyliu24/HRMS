@@ -4,6 +4,19 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+<filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.hrms.filter.LoginFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+
+<session-config>
+    <session-timeout>60</session-timeout>
+</session-config>
+
 <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>com.hrms.servlet.login</servlet-class>
@@ -31,5 +44,14 @@
     <servlet-mapping>
         <servlet-name>Setting</servlet-name>
         <url-pattern>/setting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>entry</servlet-name>
+        <servlet-class>com.hrms.servlet.entry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>entry</servlet-name>
+        <url-pattern>/pages/entry</url-pattern>
     </servlet-mapping>
 </web-app>

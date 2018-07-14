@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "FirstRegister")
+//@WebServlet(name = "FirstRegister")
 public class FirstRegister extends HttpServlet {
     Boolean isRegistered=false;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +36,7 @@ public class FirstRegister extends HttpServlet {
         } else {
             System.out.println("something wrong!");
         }
+        response.sendRedirect("index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

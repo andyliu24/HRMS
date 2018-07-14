@@ -43,18 +43,44 @@
 				员工入职
 			</h3>
 			<div style="height: 2em;"></div>
-			<form role="form">
+			<div id="right" class="alert alert-success alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					成功！
+				</h4>
+				员工入职信息已被成功添加！
+			</div>
+
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					失败
+				</h4>
+				遇到了一些问题，请核实部门编号和岗位编号是否存在！
+			</div>
+
+			<script>
+                var status = <%=request.getAttribute("status")%>;
+
+                if (status == 1){
+                    document.getElementById("right").style.display="block";
+                } else if (status == 0){
+                    document.getElementById("wrong").style.display="block";
+				}
+			</script>
+
+			<form role="form" method="post" action="entry">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" oninput="if(value.length>20)value=value.slice(0,20)"/>
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" oninput="if(value.length>20)value=value.slice(0,20)"/>
 				</div>
 				<div class="form-group">
-					 <label for="department_id">部门编号*</label><input type="number" class="form-control" id="department_id" required="required" oninput="if(value.length>20)value=value.slice(0,20)"/>
+					 <label for="department_id">部门编号*</label><input type="number" class="form-control" name="department_id" required="required" oninput="if(value.length>20)value=value.slice(0,20)"/>
 				</div>
 				<div class="form-group">
-					 <label for="position_id">岗位编号*</label><input type="number" class="form-control" id="position_id" required="required" oninput="if(value.length>20)value=value.slice(0,20)"/>
+					 <label for="position_id">岗位编号*</label><input type="number" class="form-control" name="position_id" required="required" oninput="if(value.length>20)value=value.slice(0,20)"/>
 				</div>
 				<div class="form-group">
-					 <label for="name">姓名*</label><input type="text" class="form-control" id="name" required="required" maxlength="5"/>
+					 <label for="name">姓名*</label><input type="text" class="form-control" name="name" required="required" maxlength="5"/>
 				</div>
 				<div class="form-group">
 					 <label for="gender">性别*</label><br/>
@@ -63,29 +89,17 @@
  					 <input type="radio" name="gender" value="女"/>女
 				</div><p/>
 				<div class="form-group">
-					 <label for="telephone">电话*</label><input type="number" class="form-control" id="telephone" required="required" oninput="if(value.length>11)value=value.slice(0,11)"/>
+					 <label for="telephone">电话*</label><input type="number" class="form-control" name="telephone" required="required" oninput="if(value.length>11)value=value.slice(0,11)"/>
 				</div>
 				<div class="form-group">
-					 <label for="salary">月薪*</label><input type="number" class="form-control" id="salary" required="required" oninput="if(value.length>11)value=value.slice(0,11)"/>
+					 <label for="salary">月薪*</label><input type="number" class="form-control" name="salary" required="required" oninput="if(value.length>11)value=value.slice(0,11)"/>
 				</div>
 				<div class="form-group">
 					<label for="birthday">出生日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="birthday" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="birthday" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                </div><p/>   
-				<div class="form-group">
-					<label for="trial_start_date">试用起始日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_start_date" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-               </div><p/>
-				<div class="form-group">
-					<label for="trial_end_date">试用截止日期*</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_end_date" required="required" readonly="readonly">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-            </div><p/>
+                </div><p/>
             		<div style="height: 2em;"></div>
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>

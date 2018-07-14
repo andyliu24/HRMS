@@ -1,6 +1,5 @@
 package com.hrms.servlet;
 
-import com.alibaba.fastjson.JSONArray;
 import com.hrms.dao.IUserInfoDao;
 import com.hrms.dao.impl.UserInfoDaoimpl;
 import com.hrms.entity.UserInfo;
@@ -10,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class Setting extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         Integer status = 0;
-
-        String username = new String("lmx");
+        HttpSession session = request.getSession(false);
+        String username = session.getAttribute("username").toString();
         String new_name;
         String old_password;
         String new_password;
