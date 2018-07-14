@@ -47,34 +47,59 @@
 				  岗位调动
 			</h3>
 			<div style="height: 2em;"></div>
-			<div class="alert alert-warning alert-dismissable">	
+			<div id="tips" class="alert alert-info alert-dismissable">
 				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>
 					注意!
 				</h4>
 			当且仅当原岗位编号与数据库中员工编号对应的岗位编号一致时更改才被允许。
 			</div>
-
-			<form role="form">
+			<div id="right" class="alert alert-success alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功!
+				</h4>
+				岗位调动成功。
+			</div>
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败!
+				</h4>
+				岗位调动失败，请检查员工编号，岗位编号是否存在，再重新修改。
+			</div>
+			<form role="form" method="post" action="pos_move">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" name="id" required="required" size="15" />
 				</div>
 				<div class="form-group">
-					 <label for="old_position_id">原岗位编号*</label><input type="number" class="form-control" id="old_position_id" required="required" />
+					 <label for="old_position_id">原岗位编号*</label><input type="number" class="form-control" id="old_position_id" name="old_position_id" required="required" />
 				</div>
 				<div class="form-group">
-					 <label for="new_position_id">新岗位编号*</label><input type="number" class="form-control" id="new_position_id" required="required" />
+					 <label for="new_position_id">新岗位编号*</label><input type="number" class="form-control" id="new_position_id" name="new_position_id" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="date">操作日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" id="date" name="position_movement_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
             </div>
             		<div style="height: 2em;"></div>
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+			<script>
+				var status = <%=request.getAttribute("status")%>
+
+				if(status == 1){
+				    document.getElementById("tips").style.display='none';
+				    document.getElementById("right").style.display='block';
+				}
+				else if(status == 0){
+                    document.getElementById("tips").style.display='none';
+                    document.getElementById("wrong").style.display='block';
+				}
+			</script>
 		</div>
 	</div>
 </div>

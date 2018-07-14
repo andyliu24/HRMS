@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 //@WebServlet(name = "FirstRegister")
 public class FirstRegister extends HttpServlet {
-    Boolean isRegistered=false;
+    Boolean isRegistered=true;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");

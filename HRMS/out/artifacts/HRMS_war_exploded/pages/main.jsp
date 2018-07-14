@@ -44,7 +44,7 @@
                 </p>
                 <p></p>
                 <p>
-                    <a class="btn btn-success btn-large" href="https://github.com/andyliu24/HRMS/">检查更新</a>
+                    <a class="btn btn-success btn-large" href="https://github.com/andyliu24/HRMS/" target="_blank">检查更新</a>
                     <a class="btn btn-primary btn-large" href="mailto:andyliu24@outlook.com">技术支持</a>
                 </p>
 

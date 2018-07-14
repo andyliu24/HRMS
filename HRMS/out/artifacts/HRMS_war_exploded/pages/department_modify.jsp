@@ -49,59 +49,61 @@
 				<li class="active">
 					 <a href="department_modify.jsp">部门修改</a>
 				</li>
-				<!--<li class="disabled">
-					 <a href="#">信息</a>
-				</li>
-				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li>
-							 <a href="#">操作</a>
-						</li>
-						<li>
-							 <a href="#">设置栏目</a>
-						</li>
-						<li>
-							 <a href="#">更多设置</a>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							 <a href="#">分割线</a>
-						</li>
-					</ul>
-				</li>-->
 			</ul>
 			<div style="height: 1.5em;"></div>
-			<div class="alert alert-dismissable alert-info">
-				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<div id="tips" class="alert alert-dismissable alert-info">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>
 					注意!
-				</h4> 
-			只需要填写修改的信息，不作修改的项目留空即可！
+				</h4>
+				只需要填写修改的信息，不作修改的项目留空即可！
 			</div>
-
-			<form role="form">
+			<div id="right" class="alert alert-dismissable alert-success" style="display:none" >
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功！
+				</h4>
+				部门信息修改成功！
+			</div>
+			<div id="wrong" class="alert alert-dismissable alert-warning" style="display:none" >
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败！
+				</h4>
+				部门信息修改失败，请检查部门是否存在或部门经理是否存在，再重新修改！
+			</div>
+			<form role="form" method="post" action="depart_modify">
 				<div class="form-group">
 					 <label for="id">部门编号*</label>
-					 <input type="text" class="form-control" id="id" required="required"/>
+					 <input type="text" class="form-control" id="id" required="required" name="id" />
 				</div> 
 				<div class="form-group">
 					 <label for="name">部门名称</label>
-					 <input type="text" class="form-control" id="name" />
+					 <input type="text" class="form-control" id="name" name="name" />
 				</div> 
 				<div class="form-group">
 					 <label for="manager_ID">部门经理工号</label>
-					 <input type="number" class="form-control" id="manager_ID" />
+					 <input type="number" class="form-control" id="manager_ID" name="manager_id" />
 				</div> 
 				<div class="form-group">
 					 <label for="superior">上级部门编号</label>
-					 <input type="number" class="form-control" id="superior" />
+					 <input type="number" class="form-control" id="superior" name="superior" />
 				</div> 
 
 				 <button type="submit" class="btn btn-default">提交</button>
 
 			</form>
+			<script>
+				var status = <%=request.getAttribute("status")%>
+
+				if(status == 1){
+				    document.getElementById("tips").style.display='none';
+				    document.getElementById("right").style.display='block';
+				}else if(status == 0){
+                    document.getElementById("tips").style.display='none';
+                    document.getElementById("wrong").style.display='block';
+				}
+			</script>
 		</div>
 	</div>
 </div>

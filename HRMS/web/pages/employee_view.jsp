@@ -1,3 +1,5 @@
+<%@ page import="com.hrms.entity.Employee" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -50,33 +52,11 @@
 				<li>
 					 <a href="employee_modify.jsp">员工信息修改</a>
 				</li>
-				<!--<li class="disabled">
-					 <a href="#">信息</a>
-				</li>
-				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li>
-							 <a href="#">操作</a>
-						</li>
-						<li>
-							 <a href="#">设置栏目</a>
-						</li>
-						<li>
-							 <a href="#">更多设置</a>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							 <a href="#">分割线</a>
-						</li>
-					</ul>
-				</li>-->
 			</ul>
 			<div style="height: 2em;"></div>
-			<form role="form">
+			<form role="form" method="post" action="employee_view">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" name="id" required="required" size="15" />
 				</div>
 			   <button type="submit" class="btn btn-default">查询</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
@@ -84,37 +64,37 @@
 			<div style="height: 2em;"></div>
 			<form role="form">
 					<div class="form-group">
-					 <label for="department_id">部门编号</label><input type="number" class="form-control" id="department_id" readonly="readonly" />
+					 <label for="department_id">部门编号</label><input type="number" class="form-control" id="department_id" value="${employee.department_id}"readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="position_id">岗位编号</label><input type="number" class="form-control" id="position_id" readonly="readonly" />
+					 <label for="position_id">岗位编号</label><input type="number" class="form-control" id="position_id" value="${employee.position_id}"readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="name">姓名</label><input type="text" class="form-control" id="name" readonly="readonly" />
+						<label for="name">姓名</label><input type="text" class="form-control" id="name" value="${employee.name}" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="gender">性别</label><input type="text" class="form-control" id="gender" readonly="readonly" />
+					 <label for="gender">性别</label><input type="text" class="form-control" id="gender" value="${employee.sex}"readonly="readonly" />
 				</div><p/>
 				<div class="form-group">
-					 <label for="telephone">电话</label><input type="number" class="form-control" id="telephone" readonly="readonly"/>
+					 <label for="telephone">电话</label><input type="number" class="form-control" id="telephone" value="${employee.telephone}" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					 <label for="salary">月薪</label><input type="number" class="form-control" id="salary" readonly="readonly"/>
+					 <label for="salary">月薪</label><input type="number" class="form-control" id="salary" value="${employee.salary}" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="birthday">出生日期</label><input type="date" class="form-control" id="birthday" readonly="readonly"/>
+					<label for="birthday">出生日期</label><input type="text" class="form-control" id="birthday" value="${employee.birthday}"readonly="readonly"/>
                 </div>
 				<div class="form-group">
-					<label for="trial_start_date">试用起始日期</label><input type="date" class="form-control" id="trial_start_date" readonly="readonly"/>
+					<label for="trial_start_date">试用起始日期</label><input type="text" class="form-control" id="trial_start_date" value="${employee.trial_start_time}" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="trial_end_date">试用截止日期</label><input type="date" class="form-control" id="trial_end_date" readonly="readonly"/>
+					<label for="trial_end_date">试用截止日期</label><input type="text" class="form-control" id="trial_end_date" value="${employee.trial_end_time}" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="register_time">转正日期</label><input type="date" class="form-control" id="register_time" readonly="readonly"/>
+					<label for="register_date">转正日期</label><input type="text" class="form-control" id="register_date" value="${employee.register_date}" readonly="readonly"/>
 				</div>
 				<div class="form-group">
-					<label for="dimission_date">离职日期</label><input type="date" class="form-control" id="dimission_date" readonly="readonly"/>
+					<label for="dimission_date">离职日期</label><input type="text" class="form-control" id="dimission_date" value="${employee.dimission_date}" readonly="readonly"/>
 				</div>
 			</form>
 		</div>

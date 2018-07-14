@@ -1,3 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.hrms.entity.Position" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -29,6 +33,9 @@
 				.form-control{
 				width: 42%;
 				}
+				.alert-info{
+					width: 42%;
+				}
 			}
 
 		</style>
@@ -41,6 +48,15 @@
 				岗位管理
 			</h3>
 			<div style="height: 1.5em;"></div>
+
+			<div id="tips" class="alert alert-info alert-dismissable" >
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					提示
+				</h4>
+				岗位编号置空点击查询即可查看全部信息。
+			</div>
+
 			<ul class="nav nav-tabs">
 				<li class="active">
 					 <a href="position_view.jsp">岗位查询</a>
@@ -48,92 +64,41 @@
 				<li>
 					 <a href="position_modify.jsp">岗位修改</a>
 				</li>
-				<!--<li class="disabled">
-					 <a href="#">信息</a>
-				</li>
-				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li>
-							 <a href="#">操作</a>
-						</li>
-						<li>
-							 <a href="#">设置栏目</a>
-						</li>
-						<li>
-							 <a href="#">更多设置</a>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							 <a href="#">分割线</a>
-						</li>
-					</ul>
-				</li>-->
 			</ul>
 			<div style="height: 1.5em;"></div>
-			<form role="form">
+			<form role="form" method="post" action="post_serach">
 				<div class="form-group">
 					 <label for="id">岗位编号*</label>
-					 <input type="number" class="form-control" id="id" />
+					 <input type="number" class="form-control" name="id" />
 				</div> 
 				 <button type="submit" class="btn btn-default">查询</button>
 
 			</form>
 			<div style="height: 1.5em;"></div>
-			<table class="table table-bordered">
+
+			<table class="table table-hover table-bordered">
 				<thead>
-					<tr>
-						<th>
-							岗位编号
-						</th>
-						<th>
-							岗位名称
-						</th>
-					</tr>
+				<tr>
+					<th>
+						岗位编号
+					</th>
+					<th>
+						岗位名称
+					</th>
+				</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="item" items="${result}">
 					<tr>
 						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
+								${item.id}
 						</td>
 
-					</tr>
-					<tr class="error">
 						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
+								${item.name}
 						</td>
 					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

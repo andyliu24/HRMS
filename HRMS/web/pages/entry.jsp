@@ -31,6 +31,13 @@
 				.form-control{
 				width: 42%;
 				}
+				.alert-warning{
+					width: 42%;
+				}
+				.alert-success{
+					width: 42%;
+				}
+
 			}
 
 		</style>
@@ -59,15 +66,7 @@
 				遇到了一些问题，请核实部门编号和岗位编号是否存在！
 			</div>
 
-			<script>
-                var status = <%=request.getAttribute("status")%>;
 
-                if (status == 1){
-                    document.getElementById("right").style.display="block";
-                } else if (status == 0){
-                    document.getElementById("wrong").style.display="block";
-				}
-			</script>
 
 			<form role="form" method="post" action="entry">
 				<div class="form-group">
@@ -104,6 +103,15 @@
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+			<script>
+                var status = <%=request.getAttribute("status")%>;
+
+                if (status == 1){
+                    document.getElementById("right").style.display="block";
+                } else if (status == 0){
+                    document.getElementById("wrong").style.display="block";
+                }
+			</script>
 		</div>
 	</div>
 </div>

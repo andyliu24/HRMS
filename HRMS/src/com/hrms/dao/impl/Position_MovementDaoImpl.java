@@ -64,7 +64,7 @@ public class Position_MovementDaoImpl implements IPosition_MovementDao {
 		params.add(pMovement.getId());
 		params.add(pMovement.getOld_position_id());
 		params.add(pMovement.getNew_position_id());
-		params.add((java.sql.Date)pMovement.getPosition_movement_date());
+		params.add(pMovement.getPosition_movement_date());
 		//获取语句影响的行数
 		int rowcount = basedao.executeUpdate(sql, params);
 		return rowcount;

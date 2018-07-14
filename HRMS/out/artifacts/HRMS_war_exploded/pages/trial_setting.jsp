@@ -43,26 +43,54 @@
 				试用期管理
 			</h3>
 			<div style="height: 2em;"></div>
-			<form role="form">
+
+			<div id="right" class="alert alert-success alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					成功！
+				</h4>
+				试用期信息已被成功添加！
+			</div>
+
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					失败
+				</h4>
+				遇到了一些问题，试用期信息没有被正常记录！
+			</div>
+
+			<form role="form" method="post" action="trial_setting">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" />
 				</div>
 				<div class="form-group">
 					<label for="trial_start_date">试用起始日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_start_date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="trial_start_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                </div><p/>
 				<div class="form-group">
 					<label for="trial_end_date">试用截止日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="trial_end_date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="trial_end_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
            </div><p/>
 				<div style="height: 1em;"></div>
 				<button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+
+			<script>
+                var status = <%=request.getAttribute("status")%>;
+
+                if (status == 1){
+                    document.getElementById("right").style.display="block";
+                } else if (status == 0){
+                    document.getElementById("wrong").style.display="block";
+                }
+			</script>
+
 		</div>
 	</div>
 </div>

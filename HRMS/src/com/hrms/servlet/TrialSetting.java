@@ -14,44 +14,47 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class entry extends HttpServlet {
+//@WebServlet(name = "TrialSetting")
+public class TrialSetting extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
         Integer status = null;
         String ID = request.getParameter("id");
-        String departmentID = request.getParameter("department_id");
-        String positionID = request.getParameter("position_id");
-        String name = request.getParameter("name");
-        String gender = request.getParameter("gender");
-        String telephone = request.getParameter("telephone");
-        String salary = request.getParameter("salary");
-        Date birthday = null;
+
+        Date trial_start_date = null;
+        Date trial_end_date = null;
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
         try {
-            birthday = simpleDateFormat.parse(request.getParameter("birthday"));
+            trial_start_date = simpleDateFormat.parse(request.getParameter("trial_start_date"));
+            trial_end_date = simpleDateFormat.parse(request.getParameter("trial_end_date"));
+
         } catch (ParseException e) {
             System.out.println("birthday init error!");
         }
 
         try {
-            Employee employee = new Employee(ID,departmentID,positionID,name,gender,birthday,telephone,salary,null,null,null,null);
+            Employee employee = new Employee();
+            employee.setId(ID);
+            employee.setTrial_start_time(trial_start_date);
+            employee.setTrial_end_time(trial_end_date);
             IEmployeeDao employeeDao = new EmployeeDaoImpl();
-            if(employeeDao.insertEmployee(employee) == 1){
+            if(employeeDao.updateRandomEmployee(employee) == 1){
                 status=1;
-                System.out.println("insert success!");
+                System.out.println("update trial date success!");
             } else {
                 status=0;
-                System.err.println("insert failure without exception!");
+                System.err.println("update failure without exception!");
             }
         }catch (Exception e){
             status=0;
-            System.err.println("insert failure with exception!");
+            System.err.println("update failure with exception!");
             System.err.println("detail: "+e.toString());
         }
 
         request.setAttribute("status",status);
-        request.getRequestDispatcher("entry.jsp").forward(request,response);
+        request.getRequestDispatcher("trial_setting.jsp").forward(request,response);
 
     }
 

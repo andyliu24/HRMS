@@ -420,7 +420,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 			{
 				sql+=",";
 			}
-			sql+=" register_date=?";  //扩充sql语句
+			sql+=" trial_end_time=?";  //扩充sql语句
 			params.add(employee.getTrial_end_time());  //提取传入的employee的trial_end_time参数
 			flag=1;  //已有更新，将flag置为1
 		}

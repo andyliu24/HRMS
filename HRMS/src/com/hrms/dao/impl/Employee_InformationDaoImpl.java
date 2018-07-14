@@ -189,7 +189,6 @@ public class Employee_InformationDaoImpl implements IEmployee_InformationDao {
 				//新建Employee_Information对象，作为List<Employee_Information>元素
 				emp = new Employee_Information(id,old_company,seniority,master_language,ploitical_statue,whether_married);
 			}
-			return null;
 		} catch (SQLException e) {
 			System.out.println(e.toString());
 		}finally {

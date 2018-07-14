@@ -26,13 +26,15 @@
 	    
 	    <!-- Time Picker CSS-->
         <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+		<!-- 媒体查询 CSS-->
+		<link rel="stylesheet" href="../css/tips.css">
 		<style>
 			@media screen and (min-width:990px) {
 				.form-control{
 				width: 42%;
 				}
 			}
-
 		</style>
 	</head>
 	<body>
@@ -43,20 +45,48 @@
 				员工离职
 			</h3>
 			<div style="height: 2em;"></div>
-			<form role="form">
+
+			<div id="right" class="alert alert-success alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					成功！
+				</h4>
+				员工离职信息已被成功添加！
+			</div>
+
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					失败
+				</h4>
+				遇到了一些问题，员工离职日期没有被正常记录！
+			</div>
+
+			<form role="form" method="post" action="dimission">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" />
 				</div>
 				<div class="form-group">
 					<label for="dimission_date">离职日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				 	<input class="form-control" size="16" type="text" value="" id="dimission_date" required="required" readonly="readonly">
+				 	<input class="form-control" size="16" type="text" value="" name="dimission_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
               </div><p/>
 				</div>
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+
+			<script>
+                var status = <%=request.getAttribute("status")%>;
+
+                if (status == 1){
+                    document.getElementById("right").style.display="block";
+                } else if (status == 0){
+                    document.getElementById("wrong").style.display="block";
+                }
+			</script>
+
 		</div>
 	</div>
 </div>

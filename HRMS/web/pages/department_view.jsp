@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.hrms.entity.Department" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -29,6 +32,10 @@
 				.form-control{
 				width: 42%;
 				}
+				.alert-info{
+					width: 42%;
+				}
+
 			}
 
 		</style>
@@ -41,6 +48,15 @@
 				部门管理
 			</h3>
 			<div style="height: 1.5em;"></div>
+
+			<div id="tips" class="alert alert-info alert-dismissable" >
+				<button type="button" class="close" data-dismiss="alert" >×</button>
+				<h4>
+					提示
+				</h4>
+				部门编号置空点击查询即可查看全部信息。
+			</div>
+
 			<ul class="nav nav-tabs">
 				<li class="active">
 					 <a href="department_view.jsp">部门查询</a>
@@ -48,40 +64,17 @@
 				<li>
 					 <a href="department_modify.jsp">部门修改</a>
 				</li>
-				<!--<li class="disabled">
-					 <a href="#">信息</a>
-				</li>
-				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">下拉<strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li>
-							 <a href="#">操作</a>
-						</li>
-						<li>
-							 <a href="#">设置栏目</a>
-						</li>
-						<li>
-							 <a href="#">更多设置</a>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							 <a href="#">分割线</a>
-						</li>
-					</ul>
-				</li>-->
 			</ul>
 			<div style="height: 1.5em;"></div>
-			<form role="form">
+			<form role="form" method="post" action="depart_serach">
 				<div class="form-group">
-					 <label for="id">部门编号*</label>
-					 <input type="number" class="form-control" id="id" />
+					 <label for="id">部门编号</label>
+					 <input type="number" class="form-control" id="id" name="id"/>
 				</div> 
 				 <button type="submit" class="btn btn-default">查询</button>
-
 			</form>
 			<div style="height: 1.5em;"></div>
-			<table class="table table-bordered">
+			<table class="table table-hover table-bordered">
 				<thead>
 					<tr>
 						<th>
@@ -99,76 +92,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Default
-						</td>
+						<c:forEach var="item" items="${result}">
+							<tr>
+							<td>
+									${item.id}
+							</td>
+
+							<td>
+									${item.name}
+							</td>
+							<td>
+									${item.manager_id}
+							</td>
+							<td>
+									${item.superior}
+							</td>
 					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="error">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

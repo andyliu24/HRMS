@@ -45,34 +45,56 @@
 				  部门调动
 			</h3>
 			<div style="height: 2em;"></div>
-			<div class="alert alert-warning alert-dismissable">	
-				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<div id="tips" class="alert alert-info alert-dismissable">
 				<h4>
 					注意!
 				</h4>
 			当且仅当原部门编号与数据库中员工编号对应的部门编号一致时更改才被允许。
 			</div>
-
-			<form role="form">
+			<div id="right" class="alert alert-success alert-dismissable" style="display:none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功！
+				</h4>
+				部门调动信息已成功载入！
+			</div>
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display:none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败！
+				</h4>
+				部门调动失败，请检查员工编号或其原部门编号是否正确！
+			</div>
+			<form role="form" method="post" action="depart_move">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" id="id" required="required" size="15" />
 				</div>
 				<div class="form-group">
-					 <label for="old_department_id">原部门编号*</label><input type="number" class="form-control" id="old_department_id" required="required" />
+					 <label for="old_department_id">原部门编号*</label><input type="number" class="form-control" name="old_department_id" id="old_department_id" required="required" />
 				</div>
 				<div class="form-group">
-					 <label for="new_department_id">新部门编号*</label><input type="number" class="form-control" id="new_department_id" required="required" />
+					 <label for="new_department_id">新部门编号*</label><input type="number" class="form-control" name="new_department_id" id="new_department_id" required="required" />
 				</div>
 				<div class="form-group">
 					<label for="date">操作日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="department_movement_date" id="date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 </div>
             		<div style="height: 2em;"></div>
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+			<script>
+				var status = <%=request.getAttribute("status")%>
+				if (status == 1){
+				    document.getElementById("tips").style.display = 'none';
+				    document.getElementById("right").style.display = 'block';
+				} else if(status == 0 || status == -1){
+                    document.getElementById("tips").style.display = 'none';
+                    document.getElementById("wrong").style.display = 'block';
+				}
+			</script>
 		</div>
 	</div>
 </div>

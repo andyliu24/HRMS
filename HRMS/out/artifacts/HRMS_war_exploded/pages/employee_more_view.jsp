@@ -1,3 +1,4 @@
+<%@ page import="com.hrms.entity.Employee_Information" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -52,9 +53,9 @@
 				</li>
 			</ul>
 			<div style="height: 2em;"></div>
-			<form role="form">
+			<form role="form" method="post" action="employee_more_view">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" />
 				</div>
 			   <button type="submit" class="btn btn-default">查询</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
@@ -62,19 +63,19 @@
 			<div style="height: 2em;"></div>
 			<form role="form">
 					<div class="form-group">
-					 <label for="old_company">曾工作公司</label><input type="text" class="form-control" id="old_company" readonly="readonly" />
+					 <label for="old_company">曾工作公司</label><input type="text" class="form-control" id="old_company" value="${employee_information.old_company}" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="seniority">资历</label><input type="text" class="form-control" id="seniority" readonly="readonly" />
+					 <label for="seniority">资历</label><input type="text" class="form-control" id="seniority" value="${employee_information.seniority}" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="master_language	">精通语言</label><input type="text" class="form-control" id="master_language" readonly="readonly" />
+					 <label for="master_language">精通语言</label><input type="text" class="form-control" id="master_language" value="${employee_information.master_language}" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="political_status">政治面貌</label><input type="text" class="form-control" id="political_status" readonly="readonly" />
+					 <label for="political_status">政治面貌</label><input type="text" class="form-control" id="political_status" value="${employee_information.political_status}" readonly="readonly" />
 				</div>
 				<div class="form-group">
-					 <label for="whether_married">婚否</label><input type="text" class="form-control" id="whether_married" readonly="readonly"/>
+					 <label for="whether_married">婚否</label><input type="text" class="form-control" id="whether_married" value="${employee_information.whether_married}" readonly="readonly"/>
 				</div>
 			</form>
 		</div>

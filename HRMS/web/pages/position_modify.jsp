@@ -70,18 +70,50 @@
 				</li>-->
 			</ul>
 			<div style="height: 1.5em;"></div>
-			<form role="form">
+			<div id="tips" class="alert alert-dismissable alert-info">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					注意!
+				</h4>
+				只有岗位编号存在才可一修改。
+			</div>
+			<div id="right" class="alert alert-dismissable alert-success" style="display:none" >
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功！
+				</h4>
+				岗位信息修改成功！
+			</div>
+			<div id="wrong" class="alert alert-dismissable alert-warning" style="display:none" >
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败！
+				</h4>
+				岗位信息修改失败，请检查岗位是否存在，再重新修改！
+			</div>
+			<div style="height: 0.5em;"></div>
+			<form role="form" method="post" action="pos_modify">
 				<div class="form-group">
 					 <label for="id">岗位编号*</label>
-					 <input type="text" class="form-control" id="id" />
+					 <input type="text" class="form-control" id="id" name="id"/>
 				</div> 
 				<div class="form-group">
 					 <label for="name">岗位名称*</label>
-					 <input type="text" class="form-control" id="name" />
+					 <input type="text" class="form-control" id="name" name="name"/>
 				</div> 
 				 <button type="submit" class="btn btn-default">提交</button>
-
 			</form>
+			<script>
+				var status = <%=request.getAttribute("status")%>;
+				if(status == 1){
+				    document.getElementById("tips").style.display='none';
+                    document.getElementById("right").style.display='block';
+				}
+				else if(status == 0){
+                    document.getElementById("tips").style.display='none';
+                    document.getElementById("wrong").style.display='block';
+				}
+			</script>
 		</div>
 	</div>
 </div>
