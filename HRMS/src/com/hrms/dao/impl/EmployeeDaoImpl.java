@@ -225,7 +225,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 		//新建List<Employee>，存放Employee的元素
 		List<Employee> employeeList = new ArrayList<Employee>();
 		//在某个时间段的查询sql语句
-		String sql = "select * from employees where register_date between '" + s1 + "' and '" + s2 +"'";
+		String sql = "select * from employees where register_date between '" + s1 + "' and '" + s2 +"' order by register_date";
 		//查询的返回结果集
 		ResultSet rs = basedao.executeQuery(sql, params);
 		try {
@@ -264,7 +264,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 		//新建List<Employee>，存放Employee的元素
 		List<Employee> employeeList = new ArrayList<Employee>();
 		//在某个时间段的查询sql语句
-		String sql = "select * from employees where dimission_date between '" + s1 + "' and '" + s2 +"'";
+		String sql = "select * from employees where dimission_date between '" + s1 + "' and '" + s2 +"' order by dimission_date";
 		//查询的返回结果集
 		ResultSet rs = basedao.executeQuery(sql, params);
 		try {
@@ -451,6 +451,44 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 		return rowcount;  //返回所影响的行数
 	}
 
-	
-	
+	public List<Employee> findRegisterEmployee() {
+
+		basedao = new BaseDao();
+		List<Object> params = null;
+		//新建List<Employee>，存放Employee的元素
+		List<Employee> employeeList = new ArrayList<Employee>();
+		//在某个时间段的查询sql语句
+		String sql = "select * from employees where register_date is not null order by register_date desc";
+		//查询的返回结果集
+		ResultSet rs = basedao.executeQuery(sql, params);
+		try {
+			while(rs.next()) {
+				String id = rs.getString("id");
+				String department_id = rs.getString("department_id");
+				String position_id = rs.getString("position_id");
+				String name = rs.getString("name");
+				String sex = rs.getString("sex");
+				Date birthday = rs.getDate("birthday");
+				String telephone = rs.getString("telephone");
+				String salary = rs.getString("salary");
+				Date trial_start_time = (Date)rs.getDate("trial_start_time");
+				Date trial_end_time = (Date)rs.getDate("trial_end_time");
+				Date register_date = (Date)rs.getDate("register_date");
+				Date dimission_date = (Date)rs.getDate("dimission_date");
+				//新建Employee对象，作为List<Employee>元素
+				Employee empl = new Employee(id,department_id,position_id,name,sex,birthday,telephone,salary,trial_start_time,trial_end_time,register_date,dimission_date);
+				employeeList.add(empl);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.toString());
+		}finally {
+			//关闭basedao
+			basedao.closeConnection();
+		}
+		return employeeList;
+	}
+
+
+
+
 }

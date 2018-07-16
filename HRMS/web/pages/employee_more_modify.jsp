@@ -54,39 +54,62 @@
 				</li>
 			</ul>
 			<div style="height: 2em;"></div>
-			<div class="alert alert-dismissable alert-info">
+			<div id="tips" class="alert alert-info alert-dismissable">
 				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>
 					注意!
 				</h4> 
 			只需要填写修改的信息，不作修改的项目留空即可！
 			</div>
-
-			<form role="form">
+			<div id="right" class="alert alert-success alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功!
+				</h4>
+				修改员工详细信息成功！
+			</div>
+			<div id="wrong" class="alert alert-warning alert-dismissable" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败!
+				</h4>
+				员工详细信息修改失败，请检查该员工是否存在，再进行修改！
+			</div>
+			<form role="form" method="post" action="emp_more_modify">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" />
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" />
 				</div>
 					<div class="form-group">
-					 <label for="old_company">曾工作公司</label><input type="text" class="form-control" id="old_company" />
+					 <label for="old_company">曾工作公司</label><input type="text" class="form-control" name="old_company" />
 				</div>
 				<div class="form-group">
-					 <label for="seniority">资历</label><input type="text" class="form-control" id="seniority"  />
+					 <label for="seniority">资历</label><input type="text" class="form-control" name="seniority"  />
 				</div>
 				<div class="form-group">
-					 <label for="master_language	">精通语言</label><input type="text" class="form-control" id="master_language" />
+					 <label for="master_language">精通语言</label><input type="text" class="form-control" name="master_language" />
 				</div>
 				<div class="form-group">
-					 <label for="political_status">政治面貌</label><input type="text" class="form-control" id="political_status" />
+					 <label for="political_status">政治面貌</label><input type="text" class="form-control" name="political_status" />
 				</div>
 				<div class="form-group">
-					 <label for="whether_married">婚否</label><input type="text" class="form-control" id="whether_married" />
+					 <label for="whether_married">婚否</label><input type="text" class="form-control" name="whether_married" />
 				</div>
 			   <div style="height: 2em;"></div>
-			   <button type="submit" class="btn btn-default">查询</button>&nbsp;&nbsp;
+			   <button type="submit" class="btn btn-default">修改</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 
 			</form>
+			<script>
+				var status=<%=request.getAttribute("status")%>
 
+				if(status == 1){
+				    document.getElementById("tips").style.display='none';
+				    document.getElementById("right").style.display='block';
+				}else if(status == 0){
+                    document.getElementById("tips").style.display='none';
+                    document.getElementById("wrong").style.display='block';
+				}
+			</script>
 
 
 	</div>

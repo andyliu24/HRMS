@@ -104,7 +104,7 @@
         </div>
         <!-- -->
         <div style="padding: 0px;" class="col-sm-9 col-sm-offset-3 col-md-10  col-md-offset-2 main">
-            <iframe name="main" src="pages/main.jsp" frameborder="0" height="100%" width="100%"></iframe>
+            <iframe name="main" src="pages/main?method=info" frameborder="0" height="100%" width="100%"></iframe>
         </div>
 
         <!-- Bootstrap core JavaScript

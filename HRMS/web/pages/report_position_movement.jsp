@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -46,17 +48,17 @@
 				岗位调动表
 			</h3>
 			<div style="height: 1.5em;"></div>
-			<form role="form" class="form">
+			<form role="form" class="form" method="post" action="post_move_table">
 				<div class="form-group">
 					<label for="start_date">起始日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="start_date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="start_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
             		</div><p/>
 				<div class="form-group">
 					<label for="end_date">结束日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="end_date" required="required" readonly="readonly"> 
+					<input class="form-control" size="16" type="text" value="" name="end_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
             	</div><p/>
 				<div style="height: 1em;"></div>
@@ -81,20 +83,23 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="item" items="${post}">
 					<tr>
 						<td>
-							1
+								${item.id}
+						</td>
+
+						<td>
+								${item.old_position_id}
 						</td>
 						<td>
-							TB - Monthly
+								${item.new_position_id}
 						</td>
 						<td>
-							Default
-						</td>
-						<td>
-							2017-12-7
+								${item.position_movement_date}
 						</td>
 					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

@@ -107,8 +107,8 @@
 							<td>
 									${item.superior}
 							</td>
-					</tr>
-					</c:forEach>
+							</tr>
+						</c:forEach>
 				</tbody>
 			</table>
 		</div>

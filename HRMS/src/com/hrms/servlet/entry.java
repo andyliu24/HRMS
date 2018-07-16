@@ -1,8 +1,11 @@
 package com.hrms.servlet;
 
 import com.hrms.dao.IEmployeeDao;
+import com.hrms.dao.IEmployee_InformationDao;
 import com.hrms.dao.impl.EmployeeDaoImpl;
+import com.hrms.dao.impl.Employee_InformationDaoImpl;
 import com.hrms.entity.Employee;
+import com.hrms.entity.Employee_Information;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +35,16 @@ public class entry extends HttpServlet {
             birthday = simpleDateFormat.parse(request.getParameter("birthday"));
         } catch (ParseException e) {
             System.out.println("birthday init error!");
+            request.setAttribute("status",0);
+            request.getRequestDispatcher("entry.jsp").forward(request,response);
         }
 
         try {
             Employee employee = new Employee(ID,departmentID,positionID,name,gender,birthday,telephone,salary,null,null,null,null);
+            Employee_Information employee_information =  new Employee_Information(ID,null,null,null,null,null);
             IEmployeeDao employeeDao = new EmployeeDaoImpl();
-            if(employeeDao.insertEmployee(employee) == 1){
+            IEmployee_InformationDao employee_informationDao = new Employee_InformationDaoImpl();
+            if(employeeDao.insertEmployee(employee) == 1 && employee_informationDao.insertEmployee_Info(employee_information) == 1){
                 status=1;
                 System.out.println("insert success!");
             } else {

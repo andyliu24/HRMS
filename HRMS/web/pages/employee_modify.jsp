@@ -34,6 +34,9 @@
 				.alert-info{
 					width: 42%;
 				}
+				.alert-success{
+					width: 42%;
+				}
 			}
 
 		</style>
@@ -55,19 +58,36 @@
 				</li>
 			</ul>
 			<div style="height: 2em;"></div>
-			<div class="alert alert-dismissable alert-info">
+			<div id="tips" class="alert alert-dismissable alert-info">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>
 					注意!
 				</h4>
 				只需要填写修改的信息，不作修改的项目留空即可！
 			</div>
-			<form role="form">
+
+			<div id="right" class="alert alert-dismissable alert-success" style="display: none;">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					成功!
+				</h4>
+				员工信息已成功修改！
+			</div>
+
+			<div id="wrong" class="alert alert-dismissable alert-warning" style="display: none;">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<h4>
+					失败!
+				</h4>
+				遇到了一些问题，员工信息修改失败！
+			</div>
+
+			<form role="form" method="post" action="emp_modify">
 				<div class="form-group">
-					 <label for="id">员工编号*</label><input type="number" class="form-control" id="id" required="required" size="15" oninput="if(value.length>20)value=value.slice(0,20)"/>
+					 <label for="id">员工编号*</label><input type="number" class="form-control" name="id" required="required" size="15" oninput="if(value.length>20)value=value.slice(0,20)"/>
 				</div>
 				<div class="form-group">
-					 <label for="name">姓名</label><input type="text" class="form-control" id="name" maxlength="5"/>
+					 <label for="name">姓名</label><input type="text" class="form-control" name="name" maxlength="5"/>
 				</div>
 				<div class="form-group">
 					 <label for="gender">性别</label><br/>
@@ -76,21 +96,31 @@
  					 <input type="radio" name="gender" value="女"/>女
 				</div><p/>
 				<div class="form-group">
-					 <label for="telephone">电话</label><input type="number" class="form-control" id="telephone" oninput="if(value.length>11)value=value.slice(0,11)"/>
+					 <label for="telephone">电话</label><input type="number" class="form-control" name="telephone" oninput="if(value.length>11)value=value.slice(0,11)"/>
 				</div>
 				<div class="form-group">
-					 <label for="salary">月薪</label><input type="number" class="form-control" id="salary" oninput="if(value.length>11)value=value.slice(0,11)"/>
+					 <label for="salary">月薪</label><input type="number" class="form-control" name="salary" oninput="if(value.length>11)value=value.slice(0,11)"/>
 				</div>
 				<div class="form-group">
 					<label for="birthday">出生日期</label>
-				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="birthday" readonly="readonly">
+				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" />
+					<input class="form-control" size="16" type="text" value="" name="birthday" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 </div><p/>   
 				<div style="height: 1em;"></div>
 			   <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;
 			   <button type="reset" class="btn btn-default">重置</button>
 			</form>
+			<script>
+				var status = <%=request.getAttribute("status")%>;
+				if (status == 1){
+				    document.getElementById("right").style.display = 'block';
+				    document.getElementById("tips").style.display = 'none';
+				} else if (status == 0){
+    				document.getElementById("wrong").style.display = 'block';
+                    document.getElementById("tips").style.display = 'none';
+                }
+			</script>
 		</div>
 	</div>
 </div>

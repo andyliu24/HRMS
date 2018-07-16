@@ -113,7 +113,7 @@ public List<Position_Movement> findPosition_Movement_Date(String s1,String s2) {
 		List<Position_Movement> pmovement = new ArrayList<Position_Movement>();
 		List<Object> params = null;
 		//无条件的查询sql语句
-		String sql = "select * from position_movement where position_movement_date between '" + s1 + "' and '" + s2+"'";
+		String sql = "select * from position_movement where position_movement_date between '" + s1 + "' and '" + s2+"' order by position_movement_date";
 		//查询的结果集
 		ResultSet rs = basedao.executeQuery(sql, params);
 		try {

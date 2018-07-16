@@ -6,6 +6,8 @@
 --%>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -35,7 +37,7 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="jumbotron">
+            <div class="jumbotron well">
                 <h1 style="font-size: 3em;">欢迎登录 HRMS人力资源管理系统！</h1>
                 <p></p><p></p>
                 <p>
@@ -61,14 +63,18 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                我还没想好
+                                新增部门
                             </h3>
                         </div>
                         <div class="panel-body">
-                            Panel content
+                            <c:forEach var="item" items="${depart}" begin="0" end="5">
+                                <li>
+                                        ${item.name}
+                                </li>
+                            </c:forEach>
                         </div>
                         <div class="panel-footer">
-                            查看更多...
+                            <a href="depart_serach?method=more" target="main">查看更多...</a>
                         </div>
                     </div>
                 </div>
@@ -76,14 +82,18 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                最新信息
+                               新增岗位
                             </h3>
                         </div>
                         <div class="panel-body">
-                            Panel content
+                            <c:forEach var="item" items="${post}" begin="0" end="5">
+                                <li>
+                                        ${item.name}
+                                </li>
+                            </c:forEach>
                         </div>
                         <div class="panel-footer">
-                            查看更多...
+                            <a href="post_serach?method=more" target="main">查看更多...</a>
                         </div>
                     </div>
                 </div>
@@ -91,14 +101,18 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                开发者动态
+                                最新入职员工
                             </h3>
                         </div>
                         <div class="panel-body">
-                            Panel content
+                            <c:forEach var="item" items="${result}" begin="0" end="5">
+                                <li>
+                                    ${item.name}
+                                </li>
+                            </c:forEach>
                         </div>
                         <div class="panel-footer">
-                            查看更多...
+                            <a href="new_emp_table?method=all" target="main">查看更多...</a>
                         </div>
                     </div>
                 </div>

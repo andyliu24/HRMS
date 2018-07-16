@@ -87,7 +87,7 @@ public class Department_MovementDaoImpl implements IDepartment_MovementDao {
 		List<Object> params = null;
 		//查询的失去了语句
 		List<Department_Movement>  departlist= new ArrayList<>();
-		String sql = "select * from department_movement where department_movement_date between '" +s1 +"' and '" + s2 +"'";
+		String sql = "select * from department_movement where department_movement_date between '" +s1 +"' and '" + s2 +"' order by department_movement_date";
 		//查询返回结果集
 		ResultSet rs = basedao.executeQuery(sql, params);
 		try {

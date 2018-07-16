@@ -102,7 +102,7 @@ public class Employee_InformationDaoImpl implements IEmployee_InformationDao {
 	
 	/**
 	 *修改random的Employee_Information
-	 * @param params
+	 * @param info
 	 * @return int 
 	 */
 	public int updateRandomEmployee_Info(Employee_Information info) {
@@ -111,7 +111,7 @@ public class Employee_InformationDaoImpl implements IEmployee_InformationDao {
 		//标志用于表示语句末尾是否含有'name' = 'value'类型的短语
 		int flag=0;
 		//有待连接的sql语句
-		String sql = "update department set";
+		String sql = "update employee_information set";
 		//新建List<Object>，存放参数的数据
 		List<Object> params = new ArrayList<Object>();
 		//进行sql语句的连接判断
@@ -137,9 +137,29 @@ public class Employee_InformationDaoImpl implements IEmployee_InformationDao {
 			{
 				sql+=",";
 			}
-			sql+=" superior=?";
+			sql+=" Master_language=?";
 			params.add(info.getMaster_language());
 				
+		}
+		if(info.getPolitical_status()!=null)
+		{
+			if(flag==1)
+			{
+				sql+=",";
+			}
+			sql+=" Political_status=?";
+			params.add(info.getPolitical_status());
+
+		}
+		if(info.getWhether_married()!=null)
+		{
+			if(flag==1)
+			{
+				sql+=",";
+			}
+			sql+=" Whether_married=?";
+			params.add(info.getWhether_married());
+
 		}
 		sql+=" where id = ?";
 		params.add(info.getId());

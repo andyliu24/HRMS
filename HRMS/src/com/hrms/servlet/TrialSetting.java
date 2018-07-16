@@ -39,6 +39,8 @@ public class TrialSetting extends HttpServlet {
             employee.setId(ID);
             employee.setTrial_start_time(trial_start_date);
             employee.setTrial_end_time(trial_end_date);
+            employee.setRegister_date(trial_end_date);
+
             IEmployeeDao employeeDao = new EmployeeDaoImpl();
             if(employeeDao.updateRandomEmployee(employee) == 1){
                 status=1;

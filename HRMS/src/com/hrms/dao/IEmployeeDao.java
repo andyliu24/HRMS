@@ -97,4 +97,10 @@ public interface IEmployeeDao {
 	 * @return int
 	 */
 	public int updateRandomEmployee(Employee employee);
+
+	/**
+	 * 查询所有已转正的员工
+	 * @return list
+	 */
+	public List<Employee> findRegisterEmployee();
 }

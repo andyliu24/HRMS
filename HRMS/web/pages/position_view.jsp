@@ -68,7 +68,7 @@
 			<div style="height: 1.5em;"></div>
 			<form role="form" method="post" action="post_serach">
 				<div class="form-group">
-					 <label for="id">岗位编号*</label>
+					 <label for="id">岗位编号</label>
 					 <input type="number" class="form-control" name="id" />
 				</div> 
 				 <button type="submit" class="btn btn-default">查询</button>

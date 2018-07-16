@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -47,17 +48,17 @@
 				离职员工表
 			</h3>
 			<div style="height: 1.5em;"></div>
-			<form role="form" class="form">
+			<form role="form" class="form" method="post" action="dismiss_emp_table">
 				<div class="form-group">
 					<label for="start_date">起始日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="start_date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="start_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
             		</div><p/>
 				<div class="form-group">
 					<label for="end_date">结束日期*</label>
 				 	<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="" id="end_date" required="required" readonly="readonly">
+					<input class="form-control" size="16" type="text" value="" name="end_date" required="required" readonly="readonly">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
             	</div><p/>
 				<div style="height: 1em;"></div>
@@ -85,23 +86,26 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="emp" items="${employees}">
 					<tr>
 						<td>
-							1
+								${emp.id}
+						</td>
+
+						<td>
+								${emp.department_id}
 						</td>
 						<td>
-							TB - Monthly
+								${emp.position_id}
 						</td>
 						<td>
-							Default
+								${emp.name}
 						</td>
 						<td>
-							1500
-						</td>
-						<td>
-							2017-12-7
+								${emp.dimission_date}
 						</td>
 					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
