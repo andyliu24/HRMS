@@ -3,13 +3,19 @@ Human Resources Management System
 
 
 ### 程序运行截图
+
 ![](screenshot/index.png)
+
 ![](screenshot/employee.png)
+
 ![](screenshot/in.png)
+
 ![](screenshot/info_change.png)
+
 ![](screenshot/position_manage.png)
 
 ### 开发环境
+
 - IntelliJ IDEA 2018.1.6
 - JDK 1.8
 - Tomcat 9.0
@@ -21,5 +27,11 @@ Human Resources Management System
 2. 使用admin账号和密码1登录系统。
 3. Enjoy it。
 
+### 开发者（感谢小伙伴）
+
+- Me
+- 周韬
+- 赵心昊
+- 周家梁
 
 ### End
